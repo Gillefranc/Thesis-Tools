@@ -1,0 +1,13 @@
+apiVersion: operations.kubeedge.io/v1alpha1
+kind: NodeUpgradeJob
+metadata:
+  name: ubuntu-upgrade-1-20-0
+  namespace: default
+spec:
+  version: "v1.20.0"
+  labelSelector:
+    matchLabels:
+      "node-role.kubernetes.io/edge": ""
+  failureTolerate: "1"
+  concurrency: 1
+  timeoutSeconds: 180
