@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-ng
+  namespace: default
+  labels:
+    app: stress-ng
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/edge: ""
+  containers:
+    - name: stress-ng
+      image: harbor.mgmt.vintecc.cloud/vtc_cld-thesis-gilles/stressng:latest
+      imagePullPolicy: Always

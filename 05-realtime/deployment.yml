@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realtimetest
+  labels:
+    app: realtimetest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realtimetest
+  template:
+    metadata:
+      labels:
+        app: realtimetest
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/edge: ""
+      containers:
+        - name: realtimetest
+          image: harbor.mgmt.vintecc.cloud/vtc_cld-thesis-gilles/realtimetest:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              rt-period: "1s"
+              rt-runtime: "900ms"
+              rt-cpu: 1
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /dev/cpu_dma_latency
+              name: cpu-dma-latency
+            - mountPath: /app/out/
+              name: benchmark-volume
+      volumes:
+        - name: cpu-dma-latency
+          hostPath:
+            path: /dev/cpu_dma_latency
+            type: CharDevice
+        - name: benchmark-volume
+          hostPath:
+            path: /mnt/benchmark-rt
+            type: DirectoryOrCreate
