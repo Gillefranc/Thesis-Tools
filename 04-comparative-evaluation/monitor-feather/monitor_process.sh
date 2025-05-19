@@ -13,8 +13,8 @@ MEMORY_FILE="$OUTPUT_DIR/memory.csv"
 NETWORK_FILE="$OUTPUT_DIR/network.csv"
 
 # Write CSV headers
-echo 'timestamp,value' > "$CPU_FILE"
-echo 'timestamp,value' > "$MEMORY_FILE"
+echo 'timestamp,value' >"$CPU_FILE"
+echo 'timestamp,value' >"$MEMORY_FILE"
 
 # Loop every second
 while true; do
@@ -34,11 +34,11 @@ while true; do
   MEMORY_USAGE_MB=$(echo "scale=2; $MEMORY_USAGE_KB / 1024" | bc)
 
   # Get current timestamp
-  TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+  TIMESTAMP=$(date +"%H:%M:%S")
 
   # Append the data to the CSV files
-  echo "$TIMESTAMP, $CPU_USAGE" >> "$CPU_FILE"
-  echo "$TIMESTAMP, $MEMORY_USAGE_MB" >> "$MEMORY_FILE"
+  echo "$TIMESTAMP, $CPU_USAGE" >>"$CPU_FILE"
+  echo "$TIMESTAMP, $MEMORY_USAGE_MB" >>"$MEMORY_FILE"
 
   # Wait for 1 second
   sleep 1

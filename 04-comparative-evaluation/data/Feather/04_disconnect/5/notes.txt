@@ -1,0 +1,6 @@
+network down: 21:04:11
+node NotReady: 21:07:44
+network up: 21:07:11
+node Ready: 21:08:18
+
+67s

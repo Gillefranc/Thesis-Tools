@@ -1,0 +1,3 @@
+apply: 11:44:58
+pod 2 started: 11:45:23
+pod 1 stopped: 11:45:49

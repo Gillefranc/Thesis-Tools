@@ -1,0 +1,9 @@
+network down: 14:24:10
+node NotReady: 14:24:48
+shutdown: 14:25:10
+startup: 14:26:10
+network up: 14:27:10
+node Ready: 14:27:28
+pod started: 14:26:22
+
+pod time: 12s
